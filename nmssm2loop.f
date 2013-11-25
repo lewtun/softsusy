@@ -244,12 +244,18 @@ c     now build up the results
 **********************************************************************
 *
 
+c     LCT: Edited to handle vanishing arguments
+
       double precision function JJ(q,m1,m2) 
       
       implicit none
       double precision q,m1,m2
 
-      JJ = m1*m2*(Log(m1/q)-1)*(Log(m2/q)-1)
+      if (m1.eq.0d0 .or. m2.eq.0d0) then
+         JJ = 0d0
+      else
+         JJ = m1*m2*(Log(m1/q)-1)*(Log(m2/q)-1)
+      endif
 
       return
       end
@@ -257,39 +263,50 @@ c     now build up the results
 *
 **********************************************************************
 *
+
+c     LCT: Limits on I(m1,m2,m3) for vanishing masses taken from S.P. Martin,
+c     Phys. Rev. D 68, 075002 (2003) [arXiv:hep-ph/0307101].
 
       double precision function II(q,m1,m2,m3) 
       
       implicit none
       double precision q,m1,m2,m3,deltNM,phiNM
+      double complex SLCLI2
 
-      II = (m1-m2-m3)/2d0*Log(m2/q)*Log(m3/q)
-     $     +(m2-m1-m3)/2d0*Log(m1/q)*Log(m3/q)
-     $     +(m3-m1-m2)/2d0*Log(m1/q)*Log(m2/q)
-     $     +2*m1*log(m1/q)+2*m2*Log(m2/q)+2*m3*Log(m3/q)
-     $     -2.5d0*(m1+m2+m3)-deltNM(m1,m2,m3)/2d0/m3*phiNM(m1,m2,m3)
+      double precision pi, zeta2
+      parameter (pi = 3.1415926535897932384626433832795029D0)
+      parameter (zeta2 = pi*pi/6D0)
+
+      if (m3.eq.0d0) then
+         if (m1.gt.m2) then
+         II = (m1-m2)*(SLCLI2(m2/m1)-Log((m1-m2)/q)*Log(m1/m2)
+     $        +Log(m1/q)**2/2d0-zeta2)+m1*Log(m1/q)*(2d0-Log(m2/q))
+     $        + 2d0*m2*Log(m2/q)-5d0*(m1+m2)/2d0
+      elseif (m2.gt.m1) then
+         II = (m2-m1)*(SLCLI2(m1/m2)-Log((m2-m1)/q)*Log(m2/m1)
+     $        +Log(m2/q)**2/2d0-zeta2)+m2*Log(m2/q)*(2d0-Log(m1/q))
+     $        + 2d0*m1*Log(m1/q)-5d0*(m1+m2)/2d0
+      endif
+      if (m1.eq.m2) then
+         II = m1*(-Log(m1/q)**2+4d0*Log(m1/q)-5d0)
+         if (m2.eq.0d0) then
+            II = m1*(-Log(m1/q)**2/2d0+2d0*Log(m1/q)-2.5d0-zeta2)
+            if (m1.eq.0d0) then
+               II = 0d0
+            endif
+         endif
+      endif
+      else
+         II = (m1-m2-m3)/2d0*Log(m2/q)*Log(m3/q)
+     $        +(m2-m1-m3)/2d0*Log(m1/q)*Log(m3/q)
+     $        +(m3-m1-m2)/2d0*Log(m1/q)*Log(m2/q)
+     $        +2*m1*log(m1/q)+2*m2*Log(m2/q)+2*m3*Log(m3/q)
+     $        -2.5d0*(m1+m2+m3)-deltNM(m1,m2,m3)/2d0/m3*phiNM(m1,m2,m3)
+      endif
 
       return
       end
-
-
-
-*
-**********************************************************************
-*
-
-c     From S. Martin arXiv:hep-ph/0307101, Eq. (6.8)
-
-      double precision function II0(q,m1) 
       
-      implicit none
-      double precision q,m1
-
-      II0 = m1*(-Log(m1/q)**2+4d0*Log(m1/q)-5d0)
-
-      return
-      end 
-
 
 
 *

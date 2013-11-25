@@ -16,7 +16,6 @@ extern "C" int effpot_(int *lp,double *mt,double *mg,double *T1,double *T2,doubl
 extern "C" {
   double jj_(double *q,double *m1,double *m2);
   double ii_(double *q,double *m1,double *m2,double *m3);
-  double ii0_(double *q,double *m1);
   double ll_(double *q,double *m1,double *m2,double *m3); 
 }
 

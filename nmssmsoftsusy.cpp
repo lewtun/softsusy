@@ -3357,10 +3357,6 @@ double NmssmSoftsusy::looplog(double mass) const {
   double lam    = displayLambda();
   double al     = displayTrialambda();
   double ak     = displayTriakappa();
-  double beta   = atan(displayTanb()); 
-  double sinb   = sin(beta);
-  double cosb   = cos(beta);
-  double vev    = displayHvev();
   double v1sq   = sqr(v1);
   double v2sq   = sqr(v2);
   double smu    = displaySusyMu();   
@@ -3401,8 +3397,7 @@ double NmssmSoftsusy::looplog(double mass) const {
   double       ut   = forLoops.ut;
   double       ub   = forLoops.ub;
   double       mt   = forLoops.mt;
-  double       mb   = forLoops.mb;
-  double       mtau = forLoops.mtau; 
+  double       mb   = forLoops.mb; 
 
   /// LCT: Scenario #1: All vevs vanish
   if (v1 == 0 && v2 == 0 && s == 0) {
@@ -3551,8 +3546,64 @@ double NmssmSoftsusy::looplog(double mass) const {
 
   /// LCT: Combine tree-level and 1-loop corrections to effective potential
   VH = VH + VHloop; 
+
+  /// LCT: 2-loop O(alpha_s) corrections to effective potential. 
+  /// VH taken from Appendix C of Degrassi & Slavich, 
+  /// Nucl.Phys. B825, 119 (2010), with 2-loop functions jj, ii, and ll called 
+  /// from nmssm2loop.f.  
   
-  return VH;
+  /// LCT: Parameters for 2-loop contributions
+  double qsq     = sqr(displayMu());
+  double mtsq    = sqr(mt);
+  double mbsq    = sqr(mb);
+  double mst1sq  = sqr(mstop(1));
+  double mst2sq  = sqr(mstop(2));
+  double msb1sq  = sqr(msbot(1));
+  double msb2sq  = sqr(msbot(2));
+  double mGl     = displayGaugino(3);
+  double mGlsq   = sqr(mGl);
+  double s2t     = sin(2.0 * forLoops.thetat);
+  double c2t     = cos(2.0 * forLoops.thetat);
+  double s2b     = sin(2.0 * forLoops.thetab);
+  double c2b     = cos(2.0 * forLoops.thetab);
+  double twoLoop = sqr(displayGaugeCoupling(3)) / (64.0 * sqr(sqr(PI)));
+  double zero = 0.0;
+
+  /// LCT: Fermions
+  double top = 2.0 * jj_(&qsq, &mtsq, &mtsq) 
+    - 4.0 * sqr(mt) * ii_(&qsq, &mtsq, &mtsq, &zero);
+  double bottom = 2.0 * jj_(&qsq, &mbsq, &mbsq) 
+    - 4.0 * sqr(mb) * ii_(&qsq, &mbsq, &mbsq, &zero);
+  
+  /// LCT: Sfermions
+  double stops = 2.0 * sqr(mstop(1)) * ii_(&qsq, &mst1sq, &mst1sq, &zero) 
+    + 2.0 * ll_(&qsq, &mst1sq, &mGlsq, &mtsq)
+    - 4.0 * mt * mGl * s2t * ii_(&qsq, &mst1sq, &mGlsq, &mtsq)
+    + 0.5 * (1.0 + sqr(c2t)) * jj_(&qsq, &mst1sq, &mst1sq)
+    + 0.5 * sqr(s2t) * jj_(&qsq, &mst1sq, &mst2sq) // stop 1
+    + 2.0 * sqr(mstop(2)) * ii_(&qsq, &mst2sq, &mst2sq, &zero)
+    + 2.0 * ll_(&qsq, &mst2sq, &mGlsq, &mtsq) + 4.0 * mt * mGl * s2t 
+    * ii_(&qsq, &mst2sq, &mGlsq, &mtsq) + 0.5 * (1.0 + sqr(c2t)) 
+    * jj_(&qsq, &mst2sq, &mst2sq) 
+    + 0.5 * sqr(s2t) * jj_(&qsq, &mst2sq, &mst1sq); // stop 2
+  
+  double sbots = 2.0 * sqr(msbot(1)) * ii_(&qsq, &msb1sq, &msb1sq, &zero) 
+    + 2.0 * ll_(&qsq, &msb1sq, &mGlsq, &mbsq)
+    - 4.0 * mb * mGl * s2b * ii_(&qsq, &msb1sq, &mGlsq, &mbsq)
+    + 0.5 * (1.0 + sqr(c2b)) * jj_(&qsq, &msb1sq, &msb1sq)
+    + 0.5 * sqr(s2b) * jj_(&qsq, &msb1sq, &msb2sq) // sbot 1
+    + 2.0 * sqr(msbot(2)) * ii_(&qsq, &msb2sq, &msb2sq, &zero)
+    + 2.0 * ll_(&qsq, &msb2sq, &mGlsq, &mbsq) + 4.0 * mb * mGl * s2b 
+    * ii_(&qsq, &msb2sq, &mGlsq, &mbsq) + 0.5 * (1.0 + sqr(c2b)) 
+    * jj_(&qsq, &msb2sq, &msb2sq) 
+    + 0.5 * sqr(s2b) * jj_(&qsq, &msb2sq, &msb1sq); // sbot 2
+  
+  double VH2loop = twoLoop * (top + bottom + stops + sbots);
+  
+  /// LCT: Combine tree + 1-loop + 2-loop corrections
+  VH = VH + VH2loop;
+  
+  return VH; 
 }
 
 //PA: Imposes EWSB at the tree level. 
