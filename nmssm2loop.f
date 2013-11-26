@@ -313,7 +313,7 @@ c     Phys. Rev. D 68, 075002 (2003) [arXiv:hep-ph/0307101].
 **********************************************************************
 *
 
-c     Defined in Eq. (D3) of Degrassi & Slavich 
+c     Defined in Eq. (D3) of Degrassi & Slavich, arXiv:0907.4682
 
       double precision function LL(q,m1,m2,m3) 
       
