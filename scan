@@ -13,7 +13,10 @@ sp_dir="/home/avoigt/packages/SPheno-3.2.4"
 
 ss="./softpoint.x leshouches < ${slha_file} > ${slha_outp}"
 
-printf "# lightest CP-even Higgs mass\n"
+printf "# NMSSM lightest CP-even Higgs mass\n"
+printf "# lambda = 0.1\n"
+printf "# m0 = m12 = -a0 = 5 TeV\n"
+printf "# sign(mu) = +\n"
 printf "#%15s %15s %15s\n" "tan(beta)" Softsusy NMSPEC
 
 for t in ${tanb_values}; do
