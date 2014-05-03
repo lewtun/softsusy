@@ -1,0 +1,43 @@
+#!/bin/sh
+export LC_NUMERIC="en_US.UTF-8"
+
+tanb_values="`seq 1 0.5 50`"
+
+slha_tmpl=nmssm.slha.tmpl
+slha_file=nmssm.slha
+slha_outp=nmssm.slha.out
+slha_nmsp=inp
+
+nm_dir="/home/avoigt/packages/NMSSMTools_4.2.1"
+sp_dir="/home/avoigt/packages/SPheno-3.2.4"
+
+ss="./softpoint.x leshouches < ${slha_file} > ${slha_outp}"
+
+printf "# lightest CP-even Higgs mass\n"
+printf "#%15s %15s %15s\n" "tan(beta)" Softsusy NMSPEC
+
+for t in ${tanb_values}; do
+    # input file for Softsusy
+    cp $slha_tmpl $slha_file
+    echo "    3  ${t}        # tan(beta)" >> $slha_file
+
+    eval $ss
+
+    higgs_ss="`awk -f extract_higgs_mass.awk ${slha_outp}`"
+    if test "x$higgs_ss" = "x"; then
+        higgs_ss=0
+    fi
+
+    # input file for NMSPEC
+    sed -e 's|Block|BLOCK|' $slha_file > $slha_nmsp
+    rm -f $nm_dir/$slha_nmsp $nm_dir/spectr
+    mv $slha_nmsp $nm_dir/
+    (cd $nm_dir && ./run $slha_nmsp > /dev/null)
+
+    higgs_nm="`awk -f extract_higgs_mass.awk ${nm_dir}/spectr`"
+    if test "x$higgs_nm" = "x"; then
+        higgs_nm=0
+    fi
+
+    printf " %15s %15s %15s\n" $t $higgs_ss $higgs_nm
+done
