@@ -39,14 +39,14 @@ int main() {
   cerr << "Comput. Phys. Commun. 143 (2002) 305, hep-ph/0104145\n";
 
   /// Parameters used: CMSSM parameters
-  double m12 = 500., a0 = 0., mGutGuess = 2.0e16, tanb = 10.0, m0 = 125.;
+  double m12 = 5000., a0 = 5000., mGutGuess = 2.0e16, tanb = 5.0, m0 = 5000.;
   int sgnMu = 1;      ///< sign of mu parameter 
-  int numPoints = 10; ///< number of scan points
+  int numPoints = 100; ///< number of scan points
 
   QedQcd oneset;      ///< See "lowe.h" for default definitions parameters
 
   /// most important Standard Model inputs: you may change these and recompile
-  double alphasMZ = 0.1187, mtop = 173.5, mbmb = 4.18;
+  double alphasMZ = 0.1184, mtop = 173.18, mbmb = 4.2;
   oneset.setAlpha(ALPHAS, alphasMZ);
   oneset.setPoleMt(mtop);
   oneset.setMbMb(mbmb);
@@ -59,16 +59,16 @@ int main() {
        << TOLERANCE << endl << oneset << endl;
 
   /// Print out header line
-  cout << "# tan beta   mh           mA           mH0          mH+-\n";
+  cout << "# tc          mh           mA           mH0          mH+-\n";
 
   int i; 
   /// Set limits of tan beta scan
-  double startTanb = 3.0, endTanb = 50.0;
+  double startTC = -0.1, endTC = 0.1;
   /// Cycle through different points in the scan
   for (i = 0; i<=numPoints; i++) {
 
-    tanb = (endTanb - startTanb) / double(numPoints) * double(i) +
-      startTanb; // set tan beta ready for the scan.
+     softsusy::tc = (endTC - startTC) / double(numPoints) * double(i) +
+        startTC; // set tan beta ready for the scan.
 
     /// Preparation for calculation: set up object and input parameters
     MssmSoftsusy r; 
@@ -81,13 +81,14 @@ int main() {
 
     /// check the point in question is problem free: if so print the output
     if (!r.displayProblem().test()) 
-      cout << tanb << " " << r.displayPhys().mh0(1) << " " 
-           << r.displayPhys().mA0(1) << " " 
-           << r.displayPhys().mh0(2) << " " 
-           << r.displayPhys().mHpm << endl;
+      cout << softsusy::tc << " " << r.displayPhys().mh0(1) << " "
+           // << r.displayPhys().mA0(1) << " " 
+           // << r.displayPhys().mh0(2) << " " 
+           // << r.displayPhys().mHpm
+           << endl;
     else
       /// print out what the problem(s) is(are)
-      cout << tanb << " " << r.displayProblem() << endl;
+      cout << softsusy::tc << " " << r.displayProblem() << endl;
   }
   }
   catch(const string & a) { cout << a; return -1; }

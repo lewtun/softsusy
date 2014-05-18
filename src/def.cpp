@@ -75,5 +75,7 @@ namespace softsusy {
   /// Default: use SOFTSUSY conventions for masses of sparticles in loops, ie
   /// tree-level masses computed with the 2-loop Higgs potential
   bool sphenoMassConv = false;
+  /// GUT threshold correction
+  double tc = 0.;
 }
 /// end of global variable declaration
