@@ -39,7 +39,7 @@ int main() {
   cerr << "Comput. Phys. Commun. 143 (2002) 305, hep-ph/0104145\n";
 
   /// Parameters used: CMSSM parameters
-  double m12 = 5000., a0 = 5000., mGutGuess = 2.0e16, tanb = 5.0, m0 = 5000.;
+  double m12 = 5000., a0 = 5000., mGutGuess = 2.0e16, tanb = 20.0, m0 = 5000.;
   int sgnMu = 1;      ///< sign of mu parameter 
   int numPoints = 100; ///< number of scan points
 
