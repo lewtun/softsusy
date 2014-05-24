@@ -17,7 +17,7 @@ printf "# NMSSM lightest CP-even Higgs mass\n"
 printf "# lambda = 0.1\n"
 printf "# m0 = m12 = -a0 = 5 TeV\n"
 printf "# sign(mu) = +\n"
-printf "#%15s %15s %15s\n" "tan(beta)" Softsusy NMSPEC
+printf "#%15s %15s %15s %15s %15s %15s %15s\n" "tan(beta)" "mh(Softsusy)" "mstop1(Softsusy)" "msto2(Softsusy)" "mh(NMSPEC)" "mstop1(NMSPEC)" "mstop2(NMSPEC)"
 
 for t in ${tanb_values}; do
     # input file for Softsusy
@@ -26,9 +26,9 @@ for t in ${tanb_values}; do
 
     eval $ss
 
-    higgs_ss="`awk -f extract_higgs_mass.awk ${slha_outp}`"
+    higgs_ss="`awk -f extract_masses.awk ${slha_outp}`"
     if test "x$higgs_ss" = "x"; then
-        higgs_ss=0
+        higgs_ss="0 0 0"
     fi
 
     # input file for NMSPEC
@@ -37,10 +37,10 @@ for t in ${tanb_values}; do
     mv $slha_nmsp $nm_dir/
     (cd $nm_dir && ./run $slha_nmsp > /dev/null)
 
-    higgs_nm="`awk -f extract_higgs_mass.awk ${nm_dir}/spectr`"
+    higgs_nm="`awk -f extract_masses.awk ${nm_dir}/spectr`"
     if test "x$higgs_nm" = "x"; then
-        higgs_nm=0
+        higgs_nm="0 0 0"
     fi
 
-    printf " %15s %15s %15s\n" $t $higgs_ss $higgs_nm
+    printf " %15s %15s %15s %15s %15s %15s %15s\n" $t $higgs_ss $higgs_nm
 done
