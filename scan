@@ -1,7 +1,7 @@
 #!/bin/sh
 export LC_NUMERIC="en_US.UTF-8"
 
-tanb_values="`seq 1 0.5 50`"
+tanb_values="`seq 1 1 50`"
 
 slha_tmpl=nmssm.slha.tmpl
 slha_file=nmssm.slha
