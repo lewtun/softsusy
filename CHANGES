@@ -1,2 +1,10 @@
-<li> Fixed pMSSM conditions on mu(MSUSY): a bug was introduced in version
-3.4.0. Now it works. 
+<li>  3/7/14 Added muEff display method to NmssmSusy.
+<li>  2/7/14 Used extern templates to reduce compilation time. 
+<li>  1/7/14 Included the 1-loop imaginary parts into Higgs mixing matrix. They
+contribute at the two-loop level to the masses of the Higgs.
+<li> 20/6/13 EXTPAR setting of third family A parameters now doesn't fill in
+the others assuming universality. Thanks to F Staub.
+<li> 20/6/14 Added MODSEL 12=-1 printing running parameters out at MGUT option
+<li> 18/6/14 Major upgrade to allow the possibility of including <b>3-loop
+RGEs</b> and <b>some 2-loop threshold corrections</b> to gauge and Yukawa
+couplings. 
