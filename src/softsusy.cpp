@@ -6888,8 +6888,12 @@ double Softsusy<SoftPars>::calcMs() const {
 
   if (QEWSB < EPSTOL) throw("QEWSB Probably too low\n");
 
+  int i,k;
+  double max = tree.mu.max(i,k);
+  double min = tree.mu.min(i,k);
+
   if (QEWSB < MZ) 
-    return maximum(QEWSB * sqrt(tree.mu(2, 3) * tree.mu(1, 3)), displayMz());
+    return maximum(QEWSB * sqrt(max * min), displayMz());
   else return QEWSB;
 }
 
