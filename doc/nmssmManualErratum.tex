@@ -1,0 +1,178 @@
+\documentclass[final,3p,times,pdflatex]{elsarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{color} % LCT: for text editing
+\usepackage{amsfonts} % LCT: for Germanic "e" and "m" to match \Re and \Im
+\usepackage[normalem]{ulem}
+\ifpdf
+  \usepackage[pdftex]{hyperref}
+\else
+  \usepackage[hypertex]{hyperref}
+\fi
+
+\hypersetup{
+  letterpaper,
+  colorlinks,
+  urlcolor=blue,
+  pdfpagemode=none
+}
+
+\bibstyle{elsarticle-num}
+
+% beginning of macros
+\def\SOFTSUSY{{\tt SOFTSUSY}}
+\def\NMSSMTools{{\tt NMSSMTools}}
+\def\code#1{\small{\tt #1}\normalsize}
+\newcommand{\nn}{\nonumber}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\ba}{\begin{eqnarray}}
+\newcommand{\ea}{\end{eqnarray}}
+\newcommand{\Zv}{\,\mathbf{\backslash}\mkern-11.0mu{\mathbb{Z}}_{3}} % AGW: Backslash looks better
+\newcommand{\ds}{\displaystyle}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+% for RGEs
+\newcommand{\lamsq}{\lambda^2}
+\newcommand{\kapsq}{\kappa^2}
+\newcommand{\tr}{\mathrm{Tr}}
+\newcommand{\dt}{\frac{d}{dt}}
+\newcommand{\mhusq}{m^2_{H_2}}
+\newcommand{\mhdsq}{m^2_{H_1}}
+\newcommand{\mlamsq}{M_\lambda^2}
+\newcommand{\mkapsq}{M_\kappa^2}
+\newcommand{\mssq}{m_S^2}
+\newcommand{\mtrisq}{m_3^2}
+\newcommand{\msprsq}{m_S'^2}
+\newcommand{\mqsq}{m_{\tilde{Q}}^2}
+\newcommand{\mdsq}{m_{\tilde{d}}^2}
+\newcommand{\musq}{m_{\tilde{u}}^2}
+\newcommand{\mlsq}{m_{\tilde{L}}^2}
+\newcommand{\mesq}{m_{\tilde{e}}^2}
+\newcommand{\Alam}{a_\lambda/\lambda}
+\newcommand{\Akap}{a_\kappa/\kappa}
+\newcommand{\Musq}{M_u^2}
+\newcommand{\Mdsq}{M_d^2}
+\newcommand{\Mesq}{M_e^2}
+\newcommand{\MSbar}{{\overline{MS}}}
+\DeclareMathOperator{\sign}{sign}
+% text editing
+\newcommand*{\red}[1]{\textcolor{red}{#1}}
+\def\at{\alpha_t}
+\def\ab{\alpha_b}
+\def\as{\alpha_s}
+\def\atau{\alpha_{\tau}}
+%%
+% LCT: big O notation should not in calligraphic font
+\def\oat{O(\at)}
+\def\oab{O(\ab)}
+\def\oatau{O(\atau)}
+\def\oatab{O(\at\ab)}
+\def\oatas{O(\at\as)}
+\def\oabas{O(\ab\as)}
+\def\oatababq{O(\at\ab + \ab^2)}
+\def\oatqatababq{O(\at^2 + \at\ab + \ab^2)}
+\def\oatasatq{O(\at\as + \at^2)}
+\def\oatasabas{O(\at\as +\ab\as)}
+\def\oatasabasatq{O(\at\as + \at^2 +\ab\as)}
+\def\oatq{O(\at^2)}
+\def\oabq{O(\ab^2)}
+\def\oatauq{O(\atau^2)}
+\def\oabatau{O(\ab \atau)}
+\def\oas{O(\as)}
+\def\oatauqatab{O(\atau^2 +\ab \atau )}
+% end of macros
+
+\journal{Computer Physics Communications}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Corrigendum to ``Next-to-Minimal SOFTSUSY" [Comput.\ Phys.\ Comm.\ 185 (2014) 2322-2339]}
+
+\author[damtp]{B.C.~Allanach}
+\author[adelaide]{P.~Athron}
+\author[adelaide,bern]{Lewis~C.~Tunstall\corref{cor1}}
+\ead{tunstall@itp.unibe.ch}
+\cortext[cor1]{Corresponding author}
+\author[dresden]{A.~Voigt}
+\author[adelaide]{A.G.~Williams}
+\address[damtp]{DAMTP, CMS, University of Cambridge, Wilberforce road, Cambridge, CB3
+  0WA, United Kingdom}
+\address[adelaide]{ARC Centre of Excellence for Particle Physics at
+the Tera-scale, School of Chemistry and Physics, University of Adelaide,
+Adelaide SA 5005 Australia}
+\address[bern]{Albert Einstein Center for Fundamental Physics, Institute for Theoretical Physics, University of Bern, Sidlerstrasse 5, CH-3012 Bern, Switzerland}
+\address[dresden]{Institut f\"ur Kern- und Teilchenphysik,
+TU Dresden, Zellescher Weg 19, 01069 Dresden, Germany}
+
+\begin{abstract}
+  The article in CPC 185 (2014) 2322 contained errors in the one- and two-loop beta functions of the $\xi_S$ parameter of the NMSSM. These errors are corrected here.
+\end{abstract}
+
+\end{frontmatter}
+
+On page 21 of the original publication \cite{nmssm}, a spurious factor of $\mu_{jl}$ was introduced in Eq.\ (D.48); the correct expression should read:
+
+\begin{align}
+  \beta_{\xi^{}_S}^{(1)} &= 2(\lamsq + \kapsq)\xi^{}_S + 4(\lambda a_\lambda + \kappa a_\kappa)\xi^{}_F + 2\mu'(2\lambda m_3^2 + \kappa m_S'^2) \notag \\
+%
+&+ 4[\lambda\mu (\mhusq + \mhdsq) + \kappa\mu' \mssq] + 4a_\lambda m_3^2 + 2a_\kappa m_S'^2\,.
+\end{align}
+
+There are also three types of error in Eq.\ (D.49), namely
+
+\begin{itemize}
+  \item On lines 1-3 the $\xi_F$ factors in the $O(\lambda^2)$ terms should be brought within the $\{\ldots \}$ braces;
+  \item On lines 11-12, the coefficient of the $O(m_3^2)$ terms should be 2, not 3.
+  \item On line 12, the coefficient of the $O(\lambda g_2^2)$ term should be 6, not 3.
+\end{itemize}
+
+Thus the correct expression for Eq.\ (D.49) should read:
+
+\begin{align}
+  \beta_{\xi^{}_S}^{(2)} =& -4\lambda^4\big\{ \xi_S + 4(\Alam)\xi_F\big\}
+  - 8\kappa^4\big\{ \xi_S + 4(\Akap)\xi_F\big\}
+  -6\lamsq\big\{ \xi_S\tr( Y_u Y_u^\dagger)+ 2[(\Alam)\tr( Y_u Y_u^\dagger) + \tr( U_A Y_u^\dagger)] \xi_F \big\} \notag \\
+  %
+  &-6\lamsq\big\{\xi_S\tr( Y_d Y_d^\dagger) + 2[(\Alam)\tr( Y_d Y_d^\dagger) + \tr( D_A Y_d^\dagger)] \xi_F\big\}  \notag \\
+  %
+  &-2\lamsq\big\{\xi_S\tr( Y_e Y_e^\dagger) + 2[(\Alam)\tr( Y_e Y_e^\dagger) + \tr( E_A Y_e^\dagger)] \xi_F \big\} \notag \\
+  %
+  &-8\lamsq\kapsq\big\{ \xi_S + 2[(\Alam) + (\Akap)]\xi_F\big\} \notag \\
+  %
+  &-12\lambda\big\{ \mtrisq[(\Alam) + \mu']\tr( Y_u Y_u^\dagger) + \mtrisq\tr( U_A Y_u^\dagger)
+  + \mu\{\Musq + [(\Alam) + \mu']\tr( U_A Y_u^\dagger) + [\mhdsq + \mhusq]\tr( Y_u Y_u^\dagger)\} \big\} \notag \\
+  %
+  &-12\lambda\big\{ \mtrisq[(\Alam) + \mu']\tr( Y_d Y_d^\dagger) + \mtrisq\tr( D_A Y_d^\dagger)
+  + \mu\{\Mdsq + [(\Alam) +\mu']\tr( D_A Y_d^\dagger) + [\mhdsq + \mhusq]\tr( Y_d Y_d^\dagger)\} \big\}  \notag \\
+  %
+  &-4\lambda\big\{ \mtrisq[(\Alam)+ \mu']\tr( Y_e Y_e^\dagger) + \mtrisq\tr( E_A Y_e^\dagger)
+  + \mu\{\Mesq + [(\Alam) +\mu']\tr( E_A Y_e^\dagger) + [\mhdsq + \mhusq]\tr( Y_e Y_e^\dagger)\} \big\} \notag \\
+  %
+  &-8\lambda^3\big\{ \mtrisq[2(\Alam) + \mu'] + \mu[\mlamsq + (\Alam)[(\Alam) + \mu'] + \mhdsq + \mhusq]\big\} \notag \\
+  %
+  &-8\lamsq\kappa\big\{ \msprsq[(\Alam) + (\Akap) + \mu']
+  + \mu'[\mlamsq + (\Alam)[(\Akap) + \mu'] + 2\mssq] \big\} \notag \\
+  %
+  &-8\kappa^3\big\{ \msprsq[2(\Akap) + \mu']
+  + \mu'[\mkapsq + (\Akap)[(\Akap) + \mu'] + 2\mssq] \big\} \notag \\
+  %
+  &+ \tfrac{6}{5}\lambda g_1^2\big\{ 2\mtrisq[(\Alam) + \mu' - M_1]
+  + 2\mu[\mhdsq + \mhusq -(\Alam)M_1 - \mu' M_1 + 2M_1^2]
+  + \lambda[2\xi_F[(\Alam) - M_1]  + \xi_S] \big\} \notag \\
+  %
+  &+6\lambda g_2^2\big\{ 2\mtrisq[(\Alam) + \mu' - M_2]
+  + 2\mu[\mhdsq + \mhusq - (\Alam)M_2 - \mu' M_2 + 2M_2^2]
+  + \lambda[2\xi_F[(\Alam) - M_2] + \xi_S] \big\}\,.
+  \end{align}
+
+
+\begin{thebibliography}{10}
+  \bibitem{nmssm}
+  B.~C.~Allanach, P.~Athron, L.~C.~Tunstall, A.~Voigt and A.~G.~Williams,
+  Comput.\ Phys.\ Commun.\  {\bf 185} (2014) 2322.
+\end{thebibliography}
+
+\end{document}
