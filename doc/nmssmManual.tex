@@ -1,4 +1,4 @@
-\documentclass[final,3p,times]{elsarticle}
+\documentclass[final,3p,times,pdflatex]{elsarticle}
 \usepackage{axodraw}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -141,9 +141,9 @@ NMSSM, Higgs
 {\em Operating system:}\/ Tested on Linux 3.x\\
 {\em Word size:}\/ 64 bits.\\
 {\em External routines:}\/ None.\\
-{\em Typical running time:}\/ A few seconds per parameter point.\\
+{\em Typical running time:}\/ A few tenths of a second per parameter point.\\
 {\em Nature of problem:}\/ Calculating supersymmetric particle spectrum and
-mixing parameters in the next-to-minimal minimal supersymmetric standard
+mixing parameters in the next-to-minimal supersymmetric standard
 model. The solution to the renormalisation group equations must be consistent
 with boundary conditions on supersymmetry breaking parameters, as
 well as on the weak-scale boundary condition on gauge 
@@ -598,33 +598,32 @@ treated as outputs from the EWSB conditions (section~\ref{ewsb}).
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=350pt]{nmssmalg.eps}
-% \begin{picture}(323,245)
-% \put(10,0){\makebox(280,10)[c]{\fbox{7.\ Calculate Higgs and
-%       sparticle pole masses at $M_{SUSY}$. Run to $M_Z$.}}}
-% \put(10,40){\makebox(280,10)[c]{\fbox{6.\ Run to $M_Z$.}}}
-% \put(150,76.5){\vector(0,-1){23}}
-% \put(10,80){\makebox(280,10)[c]{\fbox{5.\ Run to $M_X$. Apply soft breaking
-% and NMSSM SUSY boundary conditions.}}}
-% \put(150,116.5){\vector(0,-1){23}}
-% \put(10,120){\makebox(280,10)[c]{\fbox{4.\ EWSB with iterative solution for $\mu_\textrm{eff}$, outputs $\{s,\kappa,m_S\}$ in $\mathbb{Z}_3$-NMSSM and $\{\mu, m_3^2, \xi_S \}$ in $\Zv$-NMSSM.}}}
-% \put(150,156){\vector(0,-1){23}}
-% \put(10,160){\makebox(280,10)[c]{\fbox{3.\ Run to $M_{SUSY}$.}}}
-% \put(30,170){convergence}
-% \DashLine(110,165)(-70,165){5}
-% \DashLine(-70,165)(-70,5){5}
-% \DashLine(-70,5)(10,5){5}
-% \put(10,5){\vector(1,0){2}}
-% \put(150,197){\vector(0,-1){24}}
-% \put(150,239){\vector(0,-1){26}}
-% \put(60,245){\fbox{1.\ SUSY radiative corrections to
-% $g_i(M_Z)$.}}
-% \put(10,200){\makebox(280,10)[c]{\fbox{2.SUSY radiative corrections to
-% $h_{t,b,\tau}(M_Z)$.}}} 
-% \put(182,45){\line(1,0){190}}
-% \put(371,45){\line(0,1){200}}
-% \put(371,245){\vector(-1,0){143}}
-% \end{picture}
+\begin{picture}(323,245)
+\put(10,0){\makebox(280,10)[c]{\fbox{7.\ Calculate Higgs and
+      sparticle pole masses at $M_{SUSY}$. Run to $M_Z$.}}}
+\put(10,40){\makebox(280,10)[c]{\fbox{6.\ Run to $M_Z$.}}}
+\put(150,76.5){\vector(0,-1){23}}
+\put(10,80){\makebox(280,10)[c]{\fbox{5.\ Run to $M_X$. Apply soft breaking
+and NMSSM SUSY boundary conditions.}}}
+\put(150,116.5){\vector(0,-1){23}}
+\put(10,120){\makebox(280,10)[c]{\fbox{4.\ EWSB with iterative solution for $\mu_\textrm{eff}$, outputs $\{s,\kappa,m_S\}$ in $\mathbb{Z}_3$-NMSSM and $\{\mu, m_3^2, \xi_S \}$ in $\Zv$-NMSSM.}}}
+\put(150,156){\vector(0,-1){23}}
+\put(10,160){\makebox(280,10)[c]{\fbox{3.\ Run to $M_{SUSY}$.}}}
+\put(30,170){convergence}
+\DashLine(110,165)(-70,165){5}
+\DashLine(-70,165)(-70,5){5}
+\DashLine(-70,5)(10,5){5}
+\put(10,5){\vector(1,0){2}}
+\put(150,197){\vector(0,-1){24}}
+\put(150,239){\vector(0,-1){26}}
+\put(60,245){\fbox{1.\ SUSY radiative corrections to
+$g_i(M_Z)$.}}
+\put(10,200){\makebox(280,10)[c]{\fbox{2.SUSY radiative corrections to
+$h_{t,b,\tau}(M_Z)$.}}} 
+\put(182,45){\line(1,0){190}}
+\put(371,45){\line(0,1){200}}
+\put(371,245){\vector(-1,0){143}}
+\end{picture}
 \end{center}
 \caption{Iterative algorithm used to calculate the NMSSM spectrum. 
 The initial step is the
@@ -742,12 +741,12 @@ to the MSSM.  Note however, that in this case these are {\it effective}
 parameters constructed from several model parameters, so we must select which
 of the latter are fixed.
 In the $\mathbb{Z}_3$-NMSSM, we fix $s$ via Eq.~\ref{eq:mueffcond} and $\kappa$
-via Eq.~\ref{eq:bmucond}, and use the third EWSB condition to fix
+via Eq.~\ref{eq:bmucond}, and use the third EWSB condition (\ref{eq:mins}) to fix
 $m_S^2$.  In the $\Zv$-NMSSM, we have more freedom and can choose to fix
 $\mu$ and $m_3^2$ --- as in the MSSM --- and use the third EWSB
 condition to fix $\xi_S$.
-Alternatively, the EWSB conditions can be used to fix the soft Higgs
-masses $m_{H_1}^2$, $m_{H_2}^2$ and $m_S^2$, see
+Alternatively, the EWSB conditions (\ref{eq:mind}-\ref{eq:mins}) can be used to fix the soft Higgs
+masses $m_{H_1}^2$, $m_{H_2}^2$ and $m_S^2$: see
 \ref{sec:run}.
 
 The full one-loop tadpole corrections
@@ -833,11 +832,9 @@ Finally, all one-loop self energies, tadpole corrections, and two-loop RGEs were
 
 
 \section*{Acknowledgments}
-This work has been partially supported by STFC 
+This work has been partially supported by STFC under grant number ST/J000434/1 
 and by the Australian Research Council through its Centres of Excellence 
-program. The Albert Einstein Center for Fundamental Physics at the University 
-of Bern is supported by the ``Innovations- und Kooperationsprojekt C-13'' of the
- ``Schweizerische Universit\"{a}tskonferenz SUK/CRUS''.
+program. 
 
 We thank Pietro Slavich for supplying us with the NMSSM {\tt FORTRAN} files with
 two-loop $\oatas$ and $\oabas$ contributions to the Higgs masses and also a
@@ -846,7 +843,7 @@ two-loop $\oatas$ and $\oabas$ contributions to the Higgs masses and also a
 Staub for responding quickly to our questions regarding \cite{Staub:2010ty}, and
  on questions and bug reports when comparing against {\tt SARAH} and 
 {\tt FlexibleSUSY}. We also thank Ben Farmer for providing useful feedback after
- using a pre-release verion of the code and S AbdusSalam for finding bugs. 
+ using a pre-release verion of the code.  
 
 PA and AV thank Dominik St\"ockinger for many helpful comments and discussions 
 regarding the precision corrections included here, and also thank both him and 
@@ -873,33 +870,65 @@ parameters. The program may then be run with
 \end{verbatim}
 \normalsize
 
-NMSSM-\SOFTSUSY\ accepts input files compliant with the SLHA2 format given in Ref.~\cite{Allanach:2008qq} and supports the setting of all SLHA2
-input blocks associated with non-complex couplings.  The set of input
-parameters which also exist in the MSSM are entered as described in
-\cite{Skands:2003cj}, just as for the MSSM version of \SOFTSUSY, while
-the new NMSSM parameters are all given in the \code{EXTPAR} block as
-outlined in \cite{Allanach:2008qq}.  For example one can specify:
+NMSSM-\SOFTSUSY\ accepts input files compliant with the SLHA2 format
+given in Ref.~\cite{Allanach:2008qq} and supports the setting of all
+SLHA2 input blocks associated with non-complex couplings.  The set of
+input parameters which also exist in the MSSM are entered as described
+in \cite{Skands:2003cj}, just as for the MSSM version of \SOFTSUSY,
+while the new NMSSM parameters are all given in the \code{EXTPAR}
+block as outlined in \cite{Allanach:2008qq}.  For example, in the
+$\Zv$-NMSSM one can set:
 %
 \begin{verbatim}
-Block EXTPAR
-   23   0                    # mu
-   24   0                    # Bmu / (cos(beta) * sin(beta))
+Block EXTPAR                 # Z3 violating NMSSM
+#  23   100                  # mu
+#  24   1000                 # m_3^2 / (cos(beta) * sin(beta))
    61   0.1                  # lambda(MX)
    62   0.1                  # kappa(MX)
    63   1000                 # A_lambda(MX)
    64   1000                 # A_kappa(MX)
-   65   100                  # (lambda * <S>)(MX)
+   65   500                  # (lambda * <S>)(MX)
    66   100                  # xi_F(MX)
-   67   0                    # xi_S(MX)
-   68   0                    # mu'(MX)
-   69   0                    # m'_S^2(MX)
+#  67   1000                 # xi_S(MX)
+   68   1000                 # mu'(MX)
+   69   1000                 # m'_S^2(MX)
    70   1000                 # m_S^2(MX)
 \end{verbatim}
 %
-By default all parameters are input at $M_X$ (defined in entry 0 in
-block EXTPAR).  In case the parameters $\lambda$, $\kappa$, $\lambda
-s / \sqrt{2}$, $\xi_F$ and $\mu'$ should be input at $M_{SUSY}$ a corresponding
-$-1$ entry in the block \code{QEXTPAR} has to be given:
+The parameters
+\begin{equation}
+  \{\mu,m_3^2 / (\cos\beta \sin\beta),\xi_S\}: \qquad \Zv\mbox{-NMSSM} \label{eq:Z3v_ewsb}
+\end{equation}
+must not be set here, because they are output by the EWSB conditions, see
+section \ref{ewsb}.  In the $\mathbb{Z}_3$-NMSSM one must set
+all $\mathbb{Z}_3$ violating parameters ($\mu$, $m_3^2$, $\xi_F$,
+$\xi_S$, $\mu'$, $m_S^{\prime\, 2}$) to zero or comment them
+out.%
+  \footnote{Unset parameters are assumed to be zero.}
+  %
+The parameters
+\begin{equation}
+  \{\kappa,s,m_S^2\}: \qquad \mathbb{Z}_3\mbox{-NMSSM} \label{eq:Z3_ewsb}
+\end{equation}
+are then output from the EWSB conditions, as in section \ref{ewsb}, and they should
+therefore not be set either.  One is then left with the following three
+free parameters:
+%
+\begin{verbatim}
+Block EXTPAR                 # Z3 symmetric NMSSM
+   61   0.1                  # lambda(MX)
+   63   1000                 # A_lambda(MX)
+   64   1000                 # A_kappa(MX)
+\end{verbatim}
+%
+By default all parameters are input at the scale $M_X$, defined either by (a) entry $0$ in
+block \code{EXTPAR} or (b) as the gauge coupling unification scale where 
+$g_1$ = $g_2$ (determined iteratively) when entry $0$ in block \code{EXTPAR} 
+is not set.  
+
+Should the user desire to input the parameters $\lambda$, $\kappa$, $\lambda s / \sqrt{2}$, 
+$\xi_F$ and $\mu'$ at $M_{SUSY}$, a corresponding $-1$
+entry in the block \code{QEXTPAR} has to be given:
 %
 \begin{verbatim}
 Block QEXTPAR
@@ -910,20 +939,27 @@ Block QEXTPAR
    68   -1                   # input mu' at Msusy
 \end{verbatim}
 %
-Parameters that are output of the EWSB conditions cannot be given in
-the \code{EXTPAR} block.  For the $\mathbb{Z}_3$-NMSSM these are $s$,
-$\kappa$ and $m_S^2$.  In the $\Zv$-NMSSM these are $\mu$, $m_3^2$ and
-$\xi_S$.
+Note that $M_{SUSY}$ is the scale where EWSB conditions are fixed, which is (by
+default) defined as $M_{SUSY} = \sqrt{m_{\tilde{t}_1}
+  m_{\tilde{t}_2}}$ and is re-calculated at each step in the
+iteration. This matches SLHA conventions,%
+  \footnote{though in the SLHA papers this scale is named $M_{EWSB}$.}
+  %
+but in \SOFTSUSY\ there is also a special option to vary this scale by 
+setting entry 4 of block \SOFTSUSY\ to give the value of QEWSB, which alters 
+$M_{SUSY}$ as described in section A.1 of the MSSM manual \cite{Allanach:2001kg}.
 
-Instead of choosing the above parameter sets as EWSB output, it is also
-possible to let the EWSB conditions determine $m_{H_1}^2$, $m_{H_2}^2$
-and $m_S^2$.  This behaviour can be enabled by setting entry $18$ in
-block \SOFTSUSY\ to $1$:
+Instead of choosing the default EWSB output parameters (\ref{eq:Z3v_ewsb}-\ref{eq:Z3_ewsb}) 
+it is also possible to output the soft scalar Higgs masses.  The EWSB conditions in 
+Eqs.~(\ref{eq:mind}-\ref{eq:mins}) will then determine $m_{H_1}^2$, $m_{H_2}^2$ and $m_S^2$ 
+when entry $18$ in block \SOFTSUSY\ is set to $1$:
 %
 \begin{verbatim}
 Block SOFTSUSY
    18   1                    # use soft Higgs masses as EWSB output
 \end{verbatim}
+
+In this case, the default EWSB output parameters (\ref{eq:Z3v_ewsb}-\ref{eq:Z3_ewsb}) must be given in the SLHA file or they will be set to zero by default. Since all $\Zv$ parameters are inputs in this case, setting any of them to a non-zero value implies that the point considered belongs to the $\Zv$-NMSSM. In this particular case, entries 23, 24 and 67 in block {\tt EXTPAR} may now be set for a $\Zv$-NMSSM point since they are no longer EWSB outputs.
 
 For the SLHA2 input option, 
 the output will also be given in 
@@ -932,7 +968,8 @@ input into other programs which subscribe to the accord, such as
 \code{PYTHIA}~\cite{Sjostrand:2007gs} (for
 simulating sparticle production and decays at colliders), for example. For
 further details on the format of 
-the input and output file, see Refs.~\cite{Allanach:2008qq} and \cite{Skands:2003cj}.
+the input and output files, see Refs.~\cite{Allanach:2008qq} and
+\cite{Skands:2003cj}. 
 
 An alternative input option for \SOFTSUSY\ is to input the parameters via the command-line interface. As of {\tt SOFTSUSY 3.4}, the command line interface of \code{softpoint.x} has
 changed, see \code{softpoint.x --help}.  For the NMSSM, the syntax is
@@ -966,7 +1003,7 @@ parameter options are listed in
     \code{--mHd2=<value>} & soft down-type Higgs mass squared $m_{H_1}^2$ \\
     \code{--mHu2=<value>} & soft up-type Higgs mass squared $m_{H_2}^2$ \\
     \code{--mu=<value>} & $\mu$ parameter \\
-    \code{--BmuOverCosBetaSinBeta=<value>} & $B\mu/(\cos\beta \sin\beta)$ \\
+    \code{--m3SqrOverCosBetaSinBeta=<value>} & $m_3^2/(\cos\beta \sin\beta)$ \\
     \code{--lambda=<value>} & trilinear superpotential coupling $\lambda$ \\
     \code{--kappa=<value>} & trilinear superpotential coupling $\kappa$ \\
     \code{--Alambda=<value>} & trilinear soft coupling $A_\lambda$ \\
@@ -983,13 +1020,10 @@ parameter options are listed in
   \label{tab:nmssm-cmd-line-options}
 \end{table}
 
-\section{Calculating decays with \SOFTSUSY\label{sec:decays}}
-\SOFTSUSY\ {\em now has the capability to calculate 2-body decay modes for the
-NMSSM}~\cite{Allanach:2017hcf}. 
+\section{Calculating decays with \NMSSMTools\label{sec:decays}}
 
-However,
-\SOFTSUSY\ also has a compatibility mode which interfaces with \NMSSMTools\
-to calculate sparticle decays in the NMSSM for checking purposes.  To enable it, the
+\SOFTSUSY\ has a compatibility mode which interfaces with \NMSSMTools\
+to calculate sparticle decays in the NMSSM.  To enable it, the
 user has to first install \NMSSMTools\ and then run the
 \code{setup\_nmssmtools.sh} script
 %
@@ -1051,36 +1085,40 @@ mentioned here, but there are many others within the program itself.
 
 \begin{figure}
   \begin{center}
-\includegraphics[width=345pt]{nmssmobj.eps}
-% \begin{picture}(330,220)(-15,80)
-% \GBox(330,220)(-30,80){0.9}
-% \ArrowLine(60,180)(20,130)
-% \ArrowLine(60,180)(150,190)
-% \ArrowLine(150,160)(150,190)
-% \ArrowLine(60,180)(150,130)
-% \ArrowLine(150,100)(150,130)
-% \ArrowLine(150,160)(150,130)
-% \ArrowLine(70,150)(150,130)
-% \ArrowLine(250,190)(150,190)
-% \ArrowLine(250,190)(250,160)
-% \ArrowLine(150,130)(250,160)
-% \ArrowLine(250,130)(250,160)
-% \SetPFont{Teletype}{10}
-% \BText(70,150){Approx}
-% \BText(60,180){RGE}
-% \BText(150,190){NmssmSusyRGE}
-% \BText(20,130){QedQcd}
-% \BText(150,160){MssmSusy}
-% \BText(150,100){SoftParsMssm}
-% \BText(150,130){MssmSoftsusy}
-% \BText(250,190){NmssmSusyPars}
-% \BText(250,160){NmssmSoftsusy}
-% \BText(250,130){SoftParsNmssm}
-% \end{picture}
-\end{center}
-\caption{Heuristic NMSSM high-level object structure of
-  \SOFTSUSY\@. Inheritance is 
-displayed by the direction of the arrows. \label{fig:objstruc}}
+    \begin{picture}(200,200)
+      \GBox(200,200)(0,0){0.9}
+      \ArrowLine(100,180)(100,150)
+      \ArrowLine(100,150)(100,110)
+      \ArrowLine(100,110)(100,60)
+      \SetPFont{Teletype}{10}
+      \put(0,0){\framebox(200,200){}}
+      \BText(100,180){RGE}
+      \BText(100,150){MssmSusy}
+      \B2Text(100,110){SoftPars<MssmSusy>}{= SoftParsMssm}
+      \B2Text(100,60){Softsusy<SoftParsMssm>}{= MssmSoftsusy}
+    \end{picture}\hfill
+    \begin{picture}(200,200)
+      \GBox(200,200)(0,0){0.9}
+      \ArrowLine(100,175)(100,150)
+      \ArrowLine(100,150)(100,125)
+      \ArrowLine(100,125)(100,100)
+      \ArrowLine(100,100)(100,75)
+      \ArrowLine(100,75)(100,50)
+      \ArrowLine(100,50)(100,25)
+      \SetPFont{Teletype}{10}
+      \put(0,0){\framebox(200,200){}}
+      \BText(100,175){RGE}
+      \BText(100,150){MssmSusy}
+      \BText(100,125){NmssmSusy}
+      \BText(100,100){SoftPars<NmssmSusy>}
+      \BText(100,75){SoftParsNmssm}
+      \BText(100,50){Softsusy<SoftParsNmssm>}
+      \BText(100,25){NmssmSoftsusy}
+    \end{picture}
+    \caption{\label{fig:objstruc} Heuristic high-level class
+      structure of \SOFTSUSY. Inheritance is displayed by the
+      arrows and {\tt typedef}s are displayed by the equals signs.}
+  \end{center}
 \end{figure}
 
 To implement the NMSSM (and other non-minimal supersymmetric models),
@@ -1098,89 +1136,59 @@ requirements in mind:
   example by inheriting from existing MSSM classes.
 \end{itemize}
 
-% The above requirements were implemented by the following changes:
-% %
-% \begin{enumerate}
-% \item The class of the soft breaking MSSM parameters and their beta
-%   functions was converted into the class template \code{SoftPars<Susy>}.
-%   The template parameter represents the class of supersymmetric
-%   parameters, from which \code{SoftPars<Susy>} inherits.  The class
-%   which contains \emph{all} MSSM parameters and beta functions,
-%   \code{SoftParsMssm}, was made a typedef for
-%   \code{SoftPars<MssmSusy>}, where \code{MssmSusy} is the class that
-%   contains the supersymmetric MSSM parameters and beta functions.
-% \begin{verbatim}
-% template <class Susy>
-% class SoftPars : public Susy {
-%    // implementation of soft breaking MSSM parameters
-%    // and their beta functions
-% };
+The above requirements were implemented by the following changes:
+%
+\begin{enumerate}
+\item The class of the soft breaking MSSM parameters and their beta
+  functions was converted into the class template \code{SoftPars<Susy>}.
+  The template parameter represents the class of supersymmetric
+  parameters, from which \code{SoftPars<Susy>} inherits.  The class
+  which contains \emph{all} MSSM parameters and beta functions,
+  \code{SoftParsMssm}, was made a typedef for
+  \code{SoftPars<MssmSusy>}, where \code{MssmSusy} is the class that
+  contains the supersymmetric MSSM parameters and beta functions.
+\begin{verbatim}
+template <class Susy>
+class SoftPars : public Susy {
+   // implementation of soft breaking MSSM parameters
+   // and their beta functions
+};
 
-% typedef SoftPars<MssmSusy> SoftParsMssm;
-% \end{verbatim}
-%   This approach makes it possible to have a class of soft breaking
-%   MSSM parameters but with a different set of supersymmetric
-%   parameters.  This mechanism is used in the NMSSM, see
-%   Section~\ref{nmssmsoftpars}. 
+typedef SoftPars<MssmSusy> SoftParsMssm;
+\end{verbatim}
+  This approach makes it possible to have a class of soft breaking
+  MSSM parameters but with a different set of supersymmetric
+  parameters.  This mechanism is used in the NMSSM, see
+  Section~\ref{nmssmsoftpars}. 
 
-% \item The class which organises the MSSM mass spectrum calculation was
-%   converted into the class template \code{Softsusy<SoftPars>}.  The
-%   template parameter represents the class of all model parameters and
-%   beta functions, from which \code{Softsusy<SoftPars>} inherits.
-%   \code{MssmSoftsusy} was made a \code{typedef} for
-%   \code{Softsusy<SoftParsMssm>}.
-% \begin{verbatim}
-% template <class SoftPars>
-% class Softsusy : public SoftPars {
-%    // organisation of MSSM mass spectrum calculation
-%    // using model parameters in SoftPars
-% };
+\item The class which organises the MSSM mass spectrum calculation was
+  converted into the class template \code{Softsusy<SoftPars>}.  The
+  template parameter represents the class of all model parameters and
+  beta functions, from which \code{Softsusy<SoftPars>} inherits.
+  \code{MssmSoftsusy} was made a \code{typedef} for
+  \code{Softsusy<SoftParsMssm>}.
+\begin{verbatim}
+template <class SoftPars>
+class Softsusy : public SoftPars {
+   // organisation of MSSM mass spectrum calculation
+   // using model parameters in SoftPars
+};
 
-% typedef Softsusy<SoftParsMssm> MssmSoftsusy;
-% \end{verbatim}
-%   This approach makes it possible to have a MSSM spectrum calculation
-%   class but with an arbitrary set of model parameters.  This mechanism
-%   is used in the NMSSM, see~\ref{nmssmsoftsusy}.
-% \end{enumerate}
+typedef Softsusy<SoftParsMssm> MssmSoftsusy;
+\end{verbatim}
+  This approach makes it possible to have a MSSM spectrum calculation
+  class but with an arbitrary set of model parameters.  This mechanism
+  is used in the NMSSM, see~\ref{nmssmsoftsusy}.
+\end{enumerate}
 
 \subsection{\code{NmssmSusy}~class}
 \label{nmssmsusy}
 
 The class of supersymmetric NMSSM parameters and beta functions,
 \code{NmssmSusy}, inherits from \code{MssmSusy} to reuse the MSSM
-parameters and beta functions, see \figurename~\ref{fig:objstruc}. 
-It
+parameters and beta functions, see \figurename~\ref{fig:objstruc}.  It
 adds data members and access methods for the new supersymmetric NMSSM
-parameters, which can be found in \tablename~\ref{tab:nmssmsusy} and are
-encoded in the \code{NmssmSusyPars} class.
-A function 
-\begin{verbatim}
-NmssmSusy betaNmssmSusy(nmsBrevity & a, const MssmSusy & s, const NmssmSusyPars & n);
-\end{verbatim}
-is provided to allow the calculation of NMSSM beta functions.
-Although 
-this is a non object oriented solution, it facilitates an object structure
-which was does not rely upon templates\footnote{Previous versions used
-  templates extensively, but we found that the longer compilation times made
-  development and debugging too slow.}. \code{NmsBrevity}~is a data structure
-that calculates various products of Yukawa and gauge couplings to make
-computation of beta functions more efficient.
-An object \code{NmssmSusyRGE}~provides a runnable set of supersymmetric NMSSM
-parameters.
-\begin{verbatim}
-class NmssmSusyPars: {
-   // Contains the NMSSM-only supersymmetric parameters
-}
-class NmssmSusy : public MssmSusy, public NmssmSusyPars {
-   // implement supersymmetric NMSSM parameter beta functions
-   // by reusing MSSM ones
-};
-class NmssmSusyRGE: public NmssmSusy, public RGE {
-   // Runnable object containing all supersymmetric NMSSM parameters
-}
-\end{verbatim}
-
-
+parameters, which can be found in \tablename~\ref{tab:nmssmsusy}.
 %
 \begin{table}
   \centering
@@ -1206,25 +1214,35 @@ class NmssmSusyRGE: public NmssmSusy, public RGE {
     \\
     $s$ & &
     \\\hline
-    \code{\small double muEff} & effective $\mu$ term &
-    \code{\small displayMuEff}
-    \\
-    $\mu_\textrm{eff}=\mu + \lambda \langle S \rangle / \sqrt{2}$ & coupling &
-    \\\hline
     \normalsize
   \end{tabular}
-  \caption{\code{NmssmSusyPars} class data and accessor methods
+  \caption{\code{NmssmSusy} class data and accessor methods
     \label{tab:nmssmsusy}}
 \end{table}
 
 \subsection{\code{SoftParsNmssm}~class}
 \label{nmssmsoftpars}
 
-The class of soft-breaking NMSSM parameters is
-\code{SoftParsNmssm}. A function 
-\code{void addBetaSoftParsNmssm}
-is provided which adds the NMSSM dependent parts onto the beta
-functions. 
+To implement the class of soft-breaking NMSSM parameters,
+\code{SoftParsNmssm}, the \code{SoftPars<Susy>} template is
+instantiated using \code{NmssmSusy} as template parameter.  Thereby
+one obtains the class of MSSM soft-breaking beta functions, using
+supersymmetric NMSSM parameters.  \code{SoftParsNmssm} then inherits
+from \code{SoftPars<NmssmSusy>} to add extra NMSSM contributions to
+the soft-breaking beta functions:
+%
+\begin{verbatim}
+class NmssmSusy : public MssmSusy {
+   // implement supersymmetric NMSSM parameter beta functions
+   // by reusing MSSM ones
+};
+
+class SoftParsNmssm : public SoftPars<NmssmSusy> {
+   // implement soft-breaking NMSSM parameter beta functions
+   // by reusing MSSM ones
+};
+\end{verbatim}
+%
 Furthermore, \code{SoftParsNmssm} adds new soft-breaking NMSSM data
 members and access methods, which are listed in
 \tablename~\ref{tab:nmssmsoftpars}.
@@ -1267,16 +1285,15 @@ members and access methods, which are listed in
 \label{nmssmsoftsusy}
 
 To create the NMSSM spectrum calculation class, \code{NmssmSoftsusy},
-it inherits from \code{MssmSoftsusy} (in order to be able to use MSSM beta
-functions and threshold corrections), and \code{SoftParsNmssm}~and
-\code{NmssmSusyPars}~for access to NMSSM couplings and mass parameters.
-Thereby one obtains an
+the \code{Softsusy<SoftPars>} template class is instantiated using
+\code{SoftParsNmssm} as template parameter.  Thereby one obtains an
 NMSSM spectrum calculator, which uses NMSSM parameters and beta
-functions.  
+functions.  \code{NmssmSoftsusy} then inherits from
+\code{Softsusy<SoftParsNmssm>} and overwrites MSSM functions to
+account for the extra NMSSM particles:
 %
 \begin{verbatim}
-class NmssmSoftsusy : public NmssmSusyPars, public SoftParsNmssm, 
-                      public MssmSoftsusy {
+class NmssmSoftsusy : public Softsusy<SoftParsNmssm> {
    // organise NMSSM spectrum calculation reusing MSSM functions
 };
 \end{verbatim}
@@ -1392,7 +1409,7 @@ are given by
 
 
 \subsection{Gauge Couplings}
-In the NMSSM, the one-loop RGEs of the for the gauge couplings $g_a$ are 
+In the NMSSM, the one-loop RGEs for the gauge couplings $g_a$ are 
 identical to those for the MSSM.  At two-loop order however, the $\lambda$ 
 coupling appears through the term
 %
@@ -1583,7 +1600,7 @@ the result
 At two-loop we have
 %
 \begin{align}
-\beta_{a_\kappa}^{2)} =& -120\kappa^4 a_\kappa - 12\lambda^4 a_\kappa 
+\beta_{a_\kappa}^{(2)} =& -120\kappa^4 a_\kappa - 12\lambda^4 a_\kappa 
 - 48\lambda^3\kappa a_\lambda - 48\lamsq\kappa^3\big[ (\Alam) + (\Akap)\big]
 -24\lamsq\kapsq a_\kappa \notag \\
 %
@@ -1755,48 +1772,48 @@ For the soft SUSY-breaking term $\xi_S$, we use the general RGE from \cite{Yam94
 where the one-loop $\beta$ function is given by
 %
 \begin{align}
-\beta_{\xi^{}_S}^{(1)} &= 2(\lamsq + \kapsq)\xi^{}_S + 4(\lambda a_\lambda + \kappa a_\kappa)\xi^{}_F + 2\mu'(2\lambda m_3^2 + \kappa m_S'^2) \notag \\
+  \beta_{\xi^{}_S}^{(1)} &= 2(\lamsq + \kapsq)\xi^{}_S + 4(\lambda a_\lambda + \kappa a_\kappa)\xi^{}_F + 2\mu'(2\lambda m_3^2 + \kappa m_S'^2) \notag \\
 %
-&+ 4[\lambda\mu (\mhusq + \mhdsq) + \kappa\mu' \mssq]\mu_{jl} + 4a_\lambda m_3^2 + 2a_\kappa m_S'^2\,.
+&+ 4[\lambda\mu (\mhusq + \mhdsq) + \kappa\mu' \mssq] + 4a_\lambda m_3^2 + 2a_\kappa m_S'^2\,.
 \end{align}
 %
 At two-loop we obtain
 %
 \begin{align}
-\beta_{\xi^{}_S}^{(2)} =& -4\lambda^4\big\{ \xi_S + 4(\Alam)\xi_F\big\} 
-- 8\kappa^4\big\{ \xi_S + 4(\Akap)\xi_F\big\} 
--6\lamsq\big\{ \xi_S\tr( Y_u Y_u^\dagger)+ 2[(\Alam)\tr( Y_u Y_u^\dagger) + \tr( U_A Y_u^\dagger)]\big\}\xi_F \notag \\
-%
-&-6\lamsq\big\{\xi_S\tr( Y_d Y_d^\dagger) + 2[(\Alam)\tr( Y_d Y_d^\dagger) + \tr( D_A Y_d^\dagger)]\big\}\xi_F  \notag \\
-%
-&-2\lamsq\big\{\xi_S\tr( Y_e Y_e^\dagger) + 2[(\Alam)\tr( Y_e Y_e^\dagger) + \tr( E_A Y_e^\dagger)]\big\}\xi_F \notag \\
-%
-&-8\lamsq\kapsq\big\{ \xi_S + 2[(\Alam) + (\Akap)]\xi_F\big\} \notag \\
-%
-&-12\lambda\big\{ \mtrisq[(\Alam) + \mu']\tr( Y_u Y_u^\dagger) + \mtrisq\tr( U_A Y_u^\dagger)
-+ \mu\{\Musq + [(\Alam) + \mu']\tr( U_A Y_u^\dagger) + [\mhdsq + \mhusq]\tr( Y_u Y_u^\dagger)\} \big\} \notag \\
-%
-&-12\lambda\big\{ \mtrisq[(\Alam) + \mu']\tr( Y_d Y_d^\dagger) + \mtrisq\tr( D_A Y_d^\dagger)
-+ \mu\{\Mdsq + [(\Alam) +\mu']\tr( D_A Y_d^\dagger) + [\mhdsq + \mhusq]\tr( Y_d Y_d^\dagger)\} \big\}  \notag \\
-%
-&-4\lambda\big\{ \mtrisq[(\Alam)+ \mu']\tr( Y_e Y_e^\dagger) + \mtrisq\tr( E_A Y_e^\dagger)
-+ \mu\{\Mesq + [(\Alam) +\mu']\tr( E_A Y_e^\dagger) + [\mhdsq + \mhusq]\tr( Y_e Y_e^\dagger)\} \big\} \notag \\
-%
-&-8\lambda^3\big\{ \mtrisq[2(\Alam) + \mu'] + \mu[\mlamsq + (\Alam)[(\Alam) + \mu'] + \mhdsq + \mhusq]\big\} \notag \\
-%
-&-8\lamsq\kappa\big\{ \msprsq[(\Alam) + (\Akap) + \mu']
-+ \mu'[\mlamsq + (\Alam)[(\Akap) + \mu'] + 2\mssq] \big\} \notag \\
-%
-&-8\kappa^3\big\{ \msprsq[2(\Akap) + \mu'] 
-+ \mu'[\mkapsq + (\Akap)[(\Akap) + \mu'] + 2\mssq] \big\} \notag \\
-%
-&+ \tfrac{6}{5}\lambda g_1^2\big\{ 3\mtrisq[(\Alam) + \mu' - M_1]
-+ 2\mu[\mhdsq + \mhusq -(\Alam)M_1 - \mu' M_1 + 2M_1^2] 
-+ \lambda[2\xi_F[(\Alam) - M_1]  + \xi_S] \big\} \notag \\
-%
-&+ 3\lambda g_2^2\big\{ 3\mtrisq[(\Alam) + \mu' - M_2]
-+ 2\mu[\mhdsq + \mhusq - (\Alam)M_2 - \mu' M_2 + 2M_2^2] 
-+ \lambda[2\xi_F[(\Alam) - M_2] + \xi_S] \big\}\,.
+  \beta_{\xi^{}_S}^{(2)} =& -4\lambda^4\big\{ \xi_S + 4(\Alam)\xi_F\big\}
+  - 8\kappa^4\big\{ \xi_S + 4(\Akap)\xi_F\big\}
+  -6\lamsq\big\{ \xi_S\tr( Y_u Y_u^\dagger)+ 2[(\Alam)\tr( Y_u Y_u^\dagger) + \tr( U_A Y_u^\dagger)] \xi_F \big\} \notag \\
+  %
+  &-6\lamsq\big\{\xi_S\tr( Y_d Y_d^\dagger) + 2[(\Alam)\tr( Y_d Y_d^\dagger) + \tr( D_A Y_d^\dagger)] \xi_F\big\}  \notag \\
+  %
+  &-2\lamsq\big\{\xi_S\tr( Y_e Y_e^\dagger) + 2[(\Alam)\tr( Y_e Y_e^\dagger) + \tr( E_A Y_e^\dagger)] \xi_F \big\} \notag \\
+  %
+  &-8\lamsq\kapsq\big\{ \xi_S + 2[(\Alam) + (\Akap)]\xi_F\big\} \notag \\
+  %
+  &-12\lambda\big\{ \mtrisq[(\Alam) + \mu']\tr( Y_u Y_u^\dagger) + \mtrisq\tr( U_A Y_u^\dagger)
+  + \mu\{\Musq + [(\Alam) + \mu']\tr( U_A Y_u^\dagger) + [\mhdsq + \mhusq]\tr( Y_u Y_u^\dagger)\} \big\} \notag \\
+  %
+  &-12\lambda\big\{ \mtrisq[(\Alam) + \mu']\tr( Y_d Y_d^\dagger) + \mtrisq\tr( D_A Y_d^\dagger)
+  + \mu\{\Mdsq + [(\Alam) +\mu']\tr( D_A Y_d^\dagger) + [\mhdsq + \mhusq]\tr( Y_d Y_d^\dagger)\} \big\}  \notag \\
+  %
+  &-4\lambda\big\{ \mtrisq[(\Alam)+ \mu']\tr( Y_e Y_e^\dagger) + \mtrisq\tr( E_A Y_e^\dagger)
+  + \mu\{\Mesq + [(\Alam) +\mu']\tr( E_A Y_e^\dagger) + [\mhdsq + \mhusq]\tr( Y_e Y_e^\dagger)\} \big\} \notag \\
+  %
+  &-8\lambda^3\big\{ \mtrisq[2(\Alam) + \mu'] + \mu[\mlamsq + (\Alam)[(\Alam) + \mu'] + \mhdsq + \mhusq]\big\} \notag \\
+  %
+  &-8\lamsq\kappa\big\{ \msprsq[(\Alam) + (\Akap) + \mu']
+  + \mu'[\mlamsq + (\Alam)[(\Akap) + \mu'] + 2\mssq] \big\} \notag \\
+  %
+  &-8\kappa^3\big\{ \msprsq[2(\Akap) + \mu']
+  + \mu'[\mkapsq + (\Akap)[(\Akap) + \mu'] + 2\mssq] \big\} \notag \\
+  %
+  &+ \tfrac{6}{5}\lambda g_1^2\big\{ 2\mtrisq[(\Alam) + \mu' - M_1]
+  + 2\mu[\mhdsq + \mhusq -(\Alam)M_1 - \mu' M_1 + 2M_1^2]
+  + \lambda[2\xi_F[(\Alam) - M_1]  + \xi_S] \big\} \notag \\
+  %
+  &+6\lambda g_2^2\big\{ 2\mtrisq[(\Alam) + \mu' - M_2]
+  + 2\mu[\mhdsq + \mhusq - (\Alam)M_2 - \mu' M_2 + 2M_2^2]
+  + \lambda[2\xi_F[(\Alam) - M_2] + \xi_S] \big\}\,.
 \end{align}
 
 \subsection{Additional Parameters}
@@ -1877,8 +1894,7 @@ At two-loop, the $\beta$ functions are given by \cite{Sper13,Sper13-2}
 \beta^{(2)}_s &= s\gamma^{(2)S}_S\,.
 \end{align}
 
-The one-loop $\beta$ function for $\tan\beta$ is the same in the NMSSM as the
-MSSM.  At two-loop, one has (in the Feynman gauge)
+The one-loop $\beta$ function for $\tan\beta$ is the same in the NMSSM as the MSSM.  At two-loop, one has
 %
 \be
 \beta^{(2)}_{t_\beta} = \tan\beta\Bigg\{\gamma^{(2)H_2}_{H_2} - 
@@ -1955,13 +1971,6 @@ A.~Djouadi, J.-L. Kneur and G.~Moultaka,
   [hep-ph/0311123].
   %%CITATION = HEP-PH/0311123;%%
   %380 citations counted in INSPIRE as of 07 Nov 2013
-%\cite{Allanach:2017hcf}
-\bibitem{Allanach:2017hcf}
-  B.~C.~Allanach and T.~Cridge,
-  %``The Calculation of Sparticle and Higgs Decays in the Minimal and Next-to-Minimal Supersymmetric Standard Models: SOFTSUSY4.0,''
-  arXiv:1703.09717 [hep-ph].
-  %%CITATION = ARXIV:1703.09717;%%
-  %1 citations counted in INSPIRE as of 03 Aug 2017
 \bibitem{Aad:2012tfa}
   G.~Aad {\it et al.}  [ATLAS Collaboration],
   %``Observation of a new particle in the search for the Standard Model Higgs boson with the ATLAS detector at the LHC,''
@@ -2022,7 +2031,7 @@ ATLAS-CONF-2013-014, talk delivered at 48th Rencontres de Moriond on Electroweak
   %42 citations counted in INSPIRE as of 07 Nov 2013
 %\cite{King:2012tr}
 \bibitem{King:2012tr}
-  S.~F.~King, M.~MÃ¼hlleitner, R.~Nevzorov and K.~Walz,
+  S.~F.~King, M.~Mühlleitner, R.~Nevzorov and K.~Walz,
   %``Natural NMSSM Higgs Bosons,''
   Nucl.\ Phys.\ B {\bf 870} (2013) 323
   [arXiv:1211.5074 [hep-ph]].
